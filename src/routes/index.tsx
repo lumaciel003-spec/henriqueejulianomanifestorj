@@ -13,8 +13,8 @@ import {
   Twitter,
   MessageCircle,
 } from "lucide-react";
-import bannerAsset from "@/assets/banner-henrique-juliano-itajai.png.asset.json";
-const CAPA_EVENTO = bannerAsset.url;
+import bannerImg from "@/assets/banner-henrique-juliano-itajai.jpg";
+const CAPA_EVENTO = bannerImg;
 
 const TITLE =
   "Pré-Venda - Henrique & Juliano em Itajaí/SC | Acesso Antecipado";
