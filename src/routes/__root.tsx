@@ -77,21 +77,42 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Pré-Venda - Henrique & Juliano em Foz do Iguaçu/PR | Acesso Antecipado" },
+      {
+        name: "description",
+        content:
+          "Pré-venda exclusiva - Henrique & Juliano em Foz do Iguaçu/PR, dia 24 de Outubro de 2026 no Estádio do ABC. Garanta seu ingresso!",
+      },
+      {
+        property: "og:title",
+        content: "Pré-Venda - Henrique & Juliano em Foz do Iguaçu/PR | Acesso Antecipado",
+      },
+      {
+        property: "og:description",
+        content:
+          "Pré-venda exclusiva - Henrique & Juliano em Foz do Iguaçu/PR, dia 24 de Outubro de 2026 no Estádio do ABC. Garanta seu ingresso!",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      {
+        rel: "icon",
+        href: "https://s3.guicheweb.com.br/nova_marca/gw_favcon.png",
+        type: "image/png",
+      },
+    ],
+    scripts: [
+      {
+        type: "text/javascript",
+        children:
+          "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '1705122720536955');fbq('track', 'PageView');",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -102,7 +123,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-br">
       <head>
         <HeadContent />
       </head>
@@ -113,6 +134,7 @@ function RootShell({ children }: { children: ReactNode }) {
     </html>
   );
 }
+
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
