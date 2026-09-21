@@ -80,7 +80,7 @@ function MetaPixelNoScript() {
         height="1"
         width="1"
         style={{ display: "none" }}
-        src="https://www.facebook.com/tr?id=1064883003190898&ev=PageView&noscript=1"
+        src="https://www.facebook.com/tr?id=1457176332895478&ev=PageView&noscript=1"
         alt=""
       />
     </noscript>
