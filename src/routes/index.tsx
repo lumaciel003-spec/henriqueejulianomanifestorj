@@ -13,16 +13,16 @@ import {
   Twitter,
   MessageCircle,
 } from "lucide-react";
-import bannerImg from "@/assets/banner-henrique-juliano-itajai.jpg";
-const CAPA_EVENTO = bannerImg;
+import capaAsset from "@/assets/matheus-kauan-cuiaba.jpg.asset.json";
+const CAPA_EVENTO = capaAsset.url;
 
 const TITLE =
-  "Pré-Venda - Henrique & Juliano em Itajaí/SC | Acesso Antecipado";
+  "Pré-Venda - Matheus & Kauan em Cuiabá/MT | Acesso Antecipado";
 const DESCRIPTION =
-  "Pré-venda exclusiva - Henrique & Juliano em Itajaí/SC, dia 16 de Outubro de 2026 no Centreventos. Garanta seu ingresso!";
+  "Pré-venda exclusiva - Matheus & Kauan em Cuiabá/MT, dia 24 de Outubro de 2026 no Allure Music Hall. Garanta seu ingresso!";
 
 const WHATSAPP_GROUP = "https://chat.whatsapp.com/LLHhHWpW3ve5vOK1plEExa?mode=hqrc";
-const TARGET_DATE = new Date("2026-09-09T15:00:00Z"); // 12h BRT
+const TARGET_DATE = new Date("2026-09-22T15:00:00Z"); // 12h BRT
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -135,7 +135,7 @@ const BENEFITS = [
   },
   {
     title: "🎁 BÔNUS EXCLUSIVOS",
-    text: "Os 15 primeiros a garantir o ingresso ganharão uma foto com o Henrique & Juliano no camarim e um copo oficial do evento autografado pelos artistas.",
+    text: "Os 15 primeiros a garantir o ingresso ganharão uma foto com o Matheus & Kauan no camarim e um copo oficial do evento autografado pelos artistas.",
   },
 ];
 
@@ -215,7 +215,7 @@ function Index() {
       <section id="top" className="relative mt-20">
         <img
           src={CAPA_EVENTO}
-          alt="Henrique & Juliano - Itajaí/SC"
+          alt="Matheus & Kauan - Cuiabá/MT"
           className="block w-full bg-[#e8e8e8] object-contain"
         />
         <div className="absolute bottom-[-1px] left-0 w-full rotate-180 overflow-hidden leading-[0]">
@@ -239,13 +239,13 @@ function Index() {
           <div className="mb-4 inline-block rounded-[20px] bg-[#e74c3c] px-4 py-2 text-sm font-bold text-white">
             {c.expired
               ? "🔥 PRÉ-VENDA ABERTA! 🔥"
-              : "🔥 PRÉ-VENDA EXCLUSIVA DIA 09/09 ÀS 12H! 🔥"}
+              : "🔥 PRÉ-VENDA EXCLUSIVA DIA 22/09 ÀS 12H! 🔥"}
           </div>
 
           <h1 className="mb-4 text-3xl font-bold text-gray-800 md:text-4xl">
             GARANTA SEU INGRESSO NA <span className="text-[#39b54a]">PRÉ-VENDA</span>
             <br />
-            HENRIQUE &amp; JULIANO - ITAJAÍ/SC
+            MATHEUS &amp; KAUAN - CUIABÁ/MT
           </h1>
 
           <p className="mb-6 text-lg text-gray-600">
@@ -292,7 +292,7 @@ function Index() {
             <div className="text-center">
               <img
                 src={CAPA_EVENTO}
-                alt="Henrique & Juliano - Itajaí/SC"
+                alt="Matheus & Kauan - Cuiabá/MT"
                 className="mx-auto w-full max-w-sm rounded-lg shadow-md"
               />
             </div>
@@ -300,17 +300,17 @@ function Index() {
             <div className="space-y-4">
               <div className="rounded-lg bg-gray-50 p-4">
                 <h3 className="mb-3 text-xl font-bold text-[#39b54a]">
-                  🎙 Henrique &amp; Juliano em Itajaí
+                  🎙 Matheus &amp; Kauan em Cuiabá
                 </h3>
 
                 <div className="space-y-2 text-gray-700">
                   <p className="flex items-center">
                     <Calendar className="mr-3 h-4 w-4 text-[#39b54a]" />
-                    <strong>Data:</strong>&nbsp;16 de Outubro de 2026 (Sexta-feira)
+                    <strong>Data:</strong>&nbsp;24 de Outubro de 2026 (Sábado)
                   </p>
                   <p className="flex items-center">
                     <MapPin className="mr-3 h-4 w-4 shrink-0 text-[#39b54a]" />
-                    <strong>Local:</strong>&nbsp;Centreventos - Itajaí/SC
+                    <strong>Local:</strong>&nbsp;Allure Music Hall - Cuiabá/MT
                   </p>
                   <p className="flex items-center">
                     <Clock className="mr-3 h-4 w-4 text-[#39b54a]" />
@@ -325,7 +325,7 @@ function Index() {
 
               <div className="rounded-lg border-l-4 border-green-500 bg-green-50 p-4">
                 <p className="text-center font-bold text-green-700">
-                  🎉 <strong>PRÉ-VENDA DIA 09/09 ÀS 12H!</strong>
+                  🎉 <strong>PRÉ-VENDA DIA 22/09 ÀS 12H!</strong>
                   <br />
                   Garanta seu ingresso antes de todo mundo
                 </p>
