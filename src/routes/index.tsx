@@ -22,7 +22,7 @@ const DESCRIPTION =
   "Pré-venda exclusiva - Matheus & Kauan em Cuiabá/MT, dia 24 de Outubro de 2026 no Allure Music Hall. Garanta seu ingresso!";
 
 const WHATSAPP_GROUP = "https://chat.whatsapp.com/CiENMqmllP494kcFEKavOj?mode=hqrc";
-const TARGET_DATE = new Date("2026-09-22T15:00:00Z"); // 12h BRT
+const TARGET_DATE = new Date("2026-09-22T13:00:00Z"); // 10h BRT
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -239,7 +239,7 @@ function Index() {
           <div className="mb-4 inline-block rounded-[20px] bg-[#e74c3c] px-4 py-2 text-sm font-bold text-white">
             {c.expired
               ? "🔥 PRÉ-VENDA ABERTA! 🔥"
-              : "🔥 PRÉ-VENDA EXCLUSIVA DIA 22/09 ÀS 12H! 🔥"}
+              : "🔥 PRÉ-VENDA EXCLUSIVA DIA 22/09 ÀS 10H! 🔥"}
           </div>
 
           <h1 className="mb-4 text-3xl font-bold text-gray-800 md:text-4xl">
@@ -325,7 +325,7 @@ function Index() {
 
               <div className="rounded-lg border-l-4 border-green-500 bg-green-50 p-4">
                 <p className="text-center font-bold text-green-700">
-                  🎉 <strong>PRÉ-VENDA DIA 22/09 ÀS 12H!</strong>
+                  🎉 <strong>PRÉ-VENDA DIA 22/09 ÀS 10H!</strong>
                   <br />
                   Garanta seu ingresso antes de todo mundo
                 </p>
