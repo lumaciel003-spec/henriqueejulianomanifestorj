@@ -134,8 +134,8 @@ const BENEFITS = [
     text: "Acompanhe pelo grupo as novidades do show",
   },
   {
-    title: "📍 LOCAL DO SHOW",
-    text: "12 de dezembro, no Estádio do ABC em Foz do Iguaçu/PR",
+    title: "🎁 BÔNUS EXCLUSIVOS",
+    text: "Os 15 primeiros a garantir o ingresso ganharão uma foto com Luan Santana no camarim e um copo oficial do evento autografado pelo artista.",
   },
 ];
 
