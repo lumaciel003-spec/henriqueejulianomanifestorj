@@ -21,7 +21,7 @@ const TITLE =
 const DESCRIPTION =
   "Pré-venda do show Luan Santana — Além do Registro, dia 12 de dezembro de 2026 no Estádio do ABC, em Foz do Iguaçu/PR. A pré-venda começa em 06/10 às 12h.";
 
-const WHATSAPP_GROUP = "https://chat.whatsapp.com/EaJ5XHfEp2YKj4ty6TBDoy?mode=hqrc";
+const WHATSAPP_GROUP = "https://chat.whatsapp.com/IxXNTzEny087vhd2wuWa6Y?mode=hqrc";
 const TARGET_DATE = new Date("2026-10-06T15:00:00Z"); // 12h BRT
 
 export const Route = createFileRoute("/")({
