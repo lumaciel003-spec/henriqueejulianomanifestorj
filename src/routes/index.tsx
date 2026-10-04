@@ -1,13 +1,28 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { CalendarDays, Clock3, MapPin, Menu, MessageCircle, X, ArrowUpRight, Instagram, Facebook, Youtube, Twitter } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import {
+  Calendar,
+  MapPin,
+  Clock,
+  Star,
+  Menu,
+  X,
+  Facebook,
+  Instagram,
+  Youtube,
+  Twitter,
+  MessageCircle,
+} from "lucide-react";
 import capaAsset from "@/assets/luan-santana-foz.png.asset.json";
+const CAPA_EVENTO = capaAsset.url;
 
-const TITLE = "Luan Santana — Além do Registro em Foz do Iguaçu | Pré-venda";
-const DESCRIPTION = "Luan Santana — Além do Registro, 12 de dezembro de 2026, no Estádio do ABC em Foz do Iguaçu/PR. Pré-venda em 06/10 às 12h.";
+const TITLE =
+  "Pré-Venda - Luan Santana em Foz do Iguaçu/PR | Além do Registro";
+const DESCRIPTION =
+  "Pré-venda do show Luan Santana — Além do Registro, dia 12 de dezembro de 2026 no Estádio do ABC, em Foz do Iguaçu/PR. A pré-venda começa em 06/10 às 12h.";
+
 const WHATSAPP_GROUP = "https://chat.whatsapp.com/EaJ5XHfEp2YKj4ty6TBDoy?mode=hqrc";
-const PRESALE_DATE = new Date("2026-10-06T15:00:00Z"); // 12h em Foz do Iguaçu (UTC-3)
+const TARGET_DATE = new Date("2026-10-06T15:00:00Z"); // 12h BRT
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -19,145 +34,392 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    scripts: [{
-      type: "text/javascript",
-      children: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '1457176332895478');fbq('track', 'PageView');`,
-    }],
+    scripts: [
+      {
+        type: "text/javascript",
+        children: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '1457176332895478');fbq('track', 'PageView');`,
+      },
+    ],
   }),
   component: Index,
 });
 
 function useCountdown() {
   const [now, setNow] = useState<number | null>(null);
+
   useEffect(() => {
     setNow(Date.now());
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, []);
-  const remaining = Math.max(PRESALE_DATE.getTime() - (now ?? PRESALE_DATE.getTime()), 0);
+
+  const left = now === null ? 0 : TARGET_DATE.getTime() - now;
+  const diff = Math.max(left, 0);
   const pad = (n: number) => String(n).padStart(2, "0");
+
   return {
-    started: now !== null && now >= PRESALE_DATE.getTime(),
-    days: pad(Math.floor(remaining / 86400000)),
-    hours: pad(Math.floor((remaining % 86400000) / 3600000)),
-    minutes: pad(Math.floor((remaining % 3600000) / 60000)),
-    seconds: pad(Math.floor((remaining % 60000) / 1000)),
+    expired: now !== null && left <= 0,
+    days: pad(Math.floor(diff / 86400000)),
+    hours: pad(Math.floor((diff % 86400000) / 3600000)),
+    minutes: pad(Math.floor((diff % 3600000) / 60000)),
+    seconds: pad(Math.floor((diff % 60000) / 1000)),
   };
 }
 
 function goToGroup() {
-  if (typeof window !== "undefined") {
-    const pixel = (window as Window & { fbq?: (...args: string[]) => void }).fbq;
-    pixel?.("track", "Lead");
-    window.open(WHATSAPP_GROUP, "_blank", "noopener,noreferrer");
+  if (typeof window !== "undefined" && (window as any).fbq) {
+    (window as any).fbq("track", "Lead");
   }
+  window.open(WHATSAPP_GROUP, "_blank");
 }
 
-function VipButton({ children }: { children: React.ReactNode }) {
+function MetaPixelNoScript() {
   return (
-    <Button onClick={goToGroup} size="lg" className="h-auto min-h-14 w-full max-w-sm whitespace-normal bg-event-lime px-6 py-3 text-center text-base font-bold text-event-ink hover:bg-event-lime/85 sm:w-auto">
-      <MessageCircle aria-hidden="true" />{children}<ArrowUpRight aria-hidden="true" />
-    </Button>
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        style={{ display: "none" }}
+        src="https://www.facebook.com/tr?id=1457176332895478&ev=PageView&noscript=1"
+        alt=""
+      />
+    </noscript>
   );
 }
 
+function scrollToId(id: string) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+const NAV_LINKS = [
+  { label: "Início", id: "top" },
+  { label: "Vantagens", id: "benefits" },
+  { label: "Evento", id: "info" },
+  { label: "Garantir", id: "cta" },
+];
+
+function VipButton({ children }: { children: React.ReactNode }) {
+  return (
+    <button
+      onClick={goToGroup}
+      className="inline-flex items-center gap-2.5 rounded-lg bg-gradient-to-r from-[#39b54a] to-[#2e8b3e] px-8 py-4 text-lg font-bold text-white shadow-md transition-all hover:-translate-y-0.5 hover:from-[#2e8b3e] hover:to-[#39b54a] hover:shadow-[0_5px_15px_rgba(57,181,74,0.3)]"
+    >
+      <MessageCircle className="h-5 w-5" />
+      {children}
+    </button>
+  );
+}
+
+function CountdownBox({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="min-w-[80px] rounded-lg bg-[#39b54a] p-4 text-white">
+      <div className="text-3xl font-black">{value}</div>
+      <div className="mt-1 text-xs uppercase text-green-100">{label}</div>
+    </div>
+  );
+}
+
+const BENEFITS = [
+  {
+    title: "🎯 ACESSO ANTECIPADO",
+    text: "Acompanhe as informações sobre o início da pré-venda",
+  },
+  {
+    title: "📅 DATA DA PRÉ-VENDA",
+    text: "A pré-venda começa em 06 de outubro às 12h (horário de Brasília)",
+  },
+  {
+    title: "🔔 NOTIFICAÇÃO IMEDIATA",
+    text: "Acompanhe pelo grupo as novidades do show",
+  },
+  {
+    title: "📍 LOCAL DO SHOW",
+    text: "12 de dezembro, no Estádio do ABC em Foz do Iguaçu/PR",
+  },
+];
+
 function Index() {
-  const countdown = useCountdown();
+  const c = useCountdown();
   const [menuOpen, setMenuOpen] = useState(false);
-  const scrollTo = (id: string) => {
+
+  const handleNav = (id: string) => {
     setMenuOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    scrollToId(id);
   };
-  const links = [{ label: "Início", id: "inicio" }, { label: "O show", id: "evento" }, { label: "Pré-venda", id: "pre-venda" }];
 
   return (
-    <div className="min-h-screen bg-event-ink font-sans text-event-light">
-      <noscript><img height="1" width="1" style={{ display: "none" }} src="https://www.facebook.com/tr?id=1457176332895478&ev=PageView&noscript=1" alt="" /></noscript>
-      <header className="sticky top-0 z-50 border-b border-event-line bg-event-ink/95 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
-          <Button variant="ghost" onClick={() => scrollTo("inicio")} className="h-auto px-0 text-left text-base font-black uppercase text-event-light hover:bg-transparent hover:text-event-lime">
-            Luan Santana <span className="hidden font-normal text-event-muted sm:inline">/ Além do Registro</span>
-          </Button>
-          <nav aria-label="Navegação principal" className="hidden items-center gap-2 md:flex">
-            {links.map(link => <Button key={link.id} variant="ghost" onClick={() => scrollTo(link.id)} className="text-event-muted hover:bg-event-surface hover:text-event-light">{link.label}</Button>)}
-            <Button onClick={goToGroup} className="ml-3 bg-event-lime font-bold text-event-ink hover:bg-event-lime/85">Grupo VIP <ArrowUpRight aria-hidden="true" /></Button>
+    <div className="min-h-screen bg-[#f4f4f4] font-sans">
+      <MetaPixelNoScript />
+      {/* HEADER */}
+      <header className="fixed top-0 z-50 h-[76px] w-full border-b-4 border-[#39b54a] bg-black text-white shadow-lg">
+        <div className="container mx-auto flex h-full max-w-6xl items-center justify-between px-4">
+          <a href="#" onClick={(e) => { e.preventDefault(); handleNav("top"); }}>
+            <img
+              src="https://s3.guicheweb.com.br/nova_marca/logogw.png"
+              alt="Guichê Web"
+              className="h-8 md:h-10"
+            />
+          </a>
+          <nav className="hidden items-center gap-8 text-sm font-medium uppercase lg:flex">
+            {NAV_LINKS.map((l) => (
+              <button
+                key={l.id}
+                onClick={() => handleNav(l.id)}
+                className="transition hover:text-[#39b54a]"
+              >
+                {l.label}
+              </button>
+            ))}
+            <button
+              onClick={goToGroup}
+              className="rounded bg-[#39b54a] px-6 py-2 font-bold text-white transition hover:bg-green-600"
+            >
+              ENTRAR
+            </button>
           </nav>
-          <Button variant="ghost" size="icon" aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)} className="text-event-light hover:bg-event-surface hover:text-event-light md:hidden">
-            {menuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-          </Button>
+          <button
+            className="text-2xl lg:hidden"
+            aria-label="Menu"
+            onClick={() => setMenuOpen((o) => !o)}
+          >
+            {menuOpen ? <X /> : <Menu />}
+          </button>
         </div>
-        {menuOpen && <nav aria-label="Navegação móvel" className="flex flex-col gap-1 border-t border-event-line px-5 py-3 md:hidden">
-          {links.map(link => <Button key={link.id} variant="ghost" onClick={() => scrollTo(link.id)} className="justify-start text-event-light hover:bg-event-surface hover:text-event-light">{link.label}</Button>)}
-          <Button onClick={() => { setMenuOpen(false); goToGroup(); }} className="mt-2 bg-event-lime text-event-ink hover:bg-event-lime/85">Entrar no grupo VIP</Button>
-        </nav>}
+
+        {/* MOBILE DRAWER */}
+        {menuOpen && (
+          <div className="absolute top-[76px] left-0 w-full border-b-4 border-[#39b54a] bg-black px-4 py-4 shadow-lg lg:hidden">
+            <nav className="flex flex-col gap-4 text-sm font-medium uppercase">
+              {NAV_LINKS.map((l) => (
+                <button
+                  key={l.id}
+                  onClick={() => handleNav(l.id)}
+                  className="text-left transition hover:text-[#39b54a]"
+                >
+                  {l.label}
+                </button>
+              ))}
+              <button
+                onClick={() => { setMenuOpen(false); goToGroup(); }}
+                className="rounded bg-[#39b54a] px-6 py-2 font-bold text-white transition hover:bg-green-600"
+              >
+                ENTRAR
+              </button>
+            </nav>
+          </div>
+        )}
       </header>
 
-      <main>
-        <section id="inicio" className="scroll-mt-20 border-b border-event-line">
-          <div className="relative mx-auto flex min-h-[340px] max-h-[620px] justify-center overflow-hidden bg-event-surface sm:min-h-[480px]">
-            <img src={capaAsset.url} alt="Flyer oficial de Luan Santana — Além do Registro, 12 de dezembro, Estádio do ABC, Foz do Iguaçu" className="h-auto max-h-[620px] w-full object-contain" fetchPriority="high" />
-          </div>
-          <div className="mx-auto max-w-6xl px-5 pb-14 pt-10 md:pb-20 md:pt-14">
-            <p className="mb-4 text-sm font-bold uppercase text-event-lime">Foz do Iguaçu · 12 de dezembro</p>
-            <h1 className="max-w-4xl text-4xl font-black uppercase leading-tight md:text-6xl">Luan Santana <span className="block font-light normal-case text-event-muted">Além do Registro</span></h1>
-            <p className="mt-5 max-w-2xl text-lg text-event-muted">Um encontro no Estádio do ABC. A pré-venda começa em 06/10, às 12h.</p>
-            <div className="mt-8"><VipButton>Entrar no grupo VIP</VipButton></div>
-          </div>
-        </section>
+      {/* BANNER */}
+      <section id="top" className="relative mt-20">
+        <img
+          src={CAPA_EVENTO}
+          alt="Luan Santana — Além do Registro em Foz do Iguaçu/PR"
+          className="block w-full bg-[#e8e8e8] object-contain"
+        />
+        <div className="absolute bottom-[-1px] left-0 w-full rotate-180 overflow-hidden leading-[0]">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+            className="relative block h-[60px] w-[calc(100%+1.3px)]"
+          >
+            <path
+              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+              fill="#f4f4f4"
+            />
+          </svg>
+        </div>
+      </section>
 
-        <section id="pre-venda" className="scroll-mt-20 border-b border-event-line bg-event-surface py-16 md:py-20">
-          <div className="mx-auto grid max-w-6xl gap-10 px-5 md:grid-cols-[1fr_auto] md:items-center">
-            <div>
-              <p className="mb-3 text-sm font-bold uppercase text-event-lime">06 de outubro · 12h (horário de Brasília)</p>
-              <h2 className="text-3xl font-black uppercase md:text-5xl">{countdown.started ? "Pré-venda iniciada" : "Falta pouco para a pré-venda"}</h2>
-              <p className="mt-4 max-w-lg text-event-muted">Entre no grupo VIP para acompanhar as novidades sobre a pré-venda.</p>
+      <main className="container relative z-10 mx-auto -mt-24 max-w-6xl px-4 pb-20">
+        {/* HEADLINE */}
+        <div className="mb-8 overflow-hidden rounded-lg bg-white p-8 text-center shadow-lg">
+          <div className="mb-4 inline-block rounded-[20px] bg-[#e74c3c] px-4 py-2 text-sm font-bold text-white">
+            {c.expired
+              ? "🔥 PRÉ-VENDA ABERTA! 🔥"
+              : "🔥 PRÉ-VENDA EXCLUSIVA DIA 06/10 ÀS 12H! 🔥"}
+          </div>
+
+          <h1 className="mb-4 text-3xl font-bold text-gray-800 md:text-4xl">
+            GARANTA SEU INGRESSO NA <span className="text-[#39b54a]">PRÉ-VENDA</span>
+            <br />
+            LUAN SANTANA - FOZ DO IGUAÇU/PR
+          </h1>
+
+          <p className="mb-6 text-lg text-gray-600">
+            Entre para o <strong>Grupo VIP</strong> e tenha acesso antecipado aos ingressos
+            <br />
+            antes da venda geral!
+          </p>
+
+          <VipButton>ENTRAR NO GRUPO VIP</VipButton>
+
+          <div className="mt-6 flex justify-center gap-4">
+            <CountdownBox value={c.days} label="Dias" />
+            <CountdownBox value={c.hours} label="Horas" />
+            <CountdownBox value={c.minutes} label="Min" />
+            <CountdownBox value={c.seconds} label="Seg" />
+          </div>
+        </div>
+
+        {/* BENEFÍCIOS */}
+        <div id="benefits" className="mb-8 scroll-mt-24 rounded-lg bg-white p-6 shadow-lg">
+          <h2 className="mb-6 text-center text-2xl font-bold text-gray-800">
+            ✨ VANTAGENS DO GRUPO VIP
+          </h2>
+          <div className="grid gap-4 md:grid-cols-2">
+            {BENEFITS.map((b) => (
+              <div
+                key={b.title}
+                className="mb-[15px] rounded-lg border-l-4 border-[#39b54a] bg-white p-5 shadow-sm"
+              >
+                <h3 className="mb-2 text-lg font-bold text-gray-800">{b.title}</h3>
+                <p className="text-gray-600">{b.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* INFORMAÇÕES DO EVENTO */}
+        <div id="info" className="mb-8 scroll-mt-24 rounded-lg bg-white p-6 shadow-lg">
+          <h2 className="mb-6 text-center text-2xl font-bold text-gray-800">
+            📍 INFORMAÇÕES DO EVENTO
+          </h2>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="text-center">
+              <img
+                src={CAPA_EVENTO}
+                alt="Luan Santana — Além do Registro em Foz do Iguaçu/PR"
+                className="mx-auto w-full max-w-sm rounded-lg shadow-md"
+              />
             </div>
-            {!countdown.started && <div aria-label="Contagem regressiva para a pré-venda" className="grid grid-cols-4 gap-2 sm:gap-3">
-              {([ [countdown.days, "Dias"], [countdown.hours, "Horas"], [countdown.minutes, "Min"], [countdown.seconds, "Seg"] ] as const).map(([value, label]) => (
-                <div key={label} className="flex h-20 w-[70px] flex-col items-center justify-center border border-event-line bg-event-ink sm:h-24 sm:w-20">
-                  <span className="text-2xl font-black tabular-nums text-event-light sm:text-3xl">{value}</span>
-                  <span className="mt-1 text-xs uppercase text-event-muted">{label}</span>
-                </div>
-              ))}
-            </div>}
-          </div>
-        </section>
 
-        <section id="evento" className="scroll-mt-20 py-16 md:py-24">
-          <div className="mx-auto max-w-6xl px-5">
-            <p className="mb-3 text-sm font-bold uppercase text-event-lime">O show</p>
-            <h2 className="mb-10 text-3xl font-black uppercase md:text-5xl">Além do Registro</h2>
-            <div className="grid gap-10 md:grid-cols-[minmax(0,360px)_1fr] md:gap-16">
-              <img src={capaAsset.url} alt="Capa do show Luan Santana — Além do Registro" className="w-full max-w-[360px] border border-event-line" loading="lazy" />
-              <div className="self-center divide-y divide-event-line border-y border-event-line">
-                <div className="flex gap-5 py-6"><CalendarDays className="mt-1 shrink-0 text-event-lime" aria-hidden="true" /><div><span className="text-xs font-bold uppercase text-event-muted">Data</span><p className="mt-1 text-xl font-semibold">12 de dezembro de 2026 · Sábado</p></div></div>
-                <div className="flex gap-5 py-6"><MapPin className="mt-1 shrink-0 text-event-lime" aria-hidden="true" /><div><span className="text-xs font-bold uppercase text-event-muted">Local</span><p className="mt-1 text-xl font-semibold">Estádio do ABC</p><p className="text-event-muted">Foz do Iguaçu · PR</p></div></div>
-                <div className="flex gap-5 py-6"><Clock3 className="mt-1 shrink-0 text-event-lime" aria-hidden="true" /><div><span className="text-xs font-bold uppercase text-event-muted">Pré-venda</span><p className="mt-1 text-xl font-semibold">06 de outubro · 12h</p><p className="text-event-muted">Horário de Brasília</p></div></div>
+            <div className="space-y-4">
+              <div className="rounded-lg bg-gray-50 p-4">
+                <h3 className="mb-3 text-xl font-bold text-[#39b54a]">
+                  🎙 Luan Santana — Além do Registro
+                </h3>
+
+                <div className="space-y-2 text-gray-700">
+                  <p className="flex items-center">
+                    <Calendar className="mr-3 h-4 w-4 text-[#39b54a]" />
+                    <strong>Data:</strong>&nbsp;12 de Dezembro de 2026 (Sábado)
+                  </p>
+                  <p className="flex items-center">
+                    <MapPin className="mr-3 h-4 w-4 shrink-0 text-[#39b54a]" />
+                    <strong>Local:</strong>&nbsp;Estádio do ABC - Foz do Iguaçu/PR
+                  </p>
+                  <p className="flex items-center">
+                    <Clock className="mr-3 h-4 w-4 text-[#39b54a]" />
+                    <strong>Pré-venda:</strong>&nbsp;06/10 às 12h (horário de Brasília)
+                  </p>
+                  <p className="flex items-center">
+                    <Star className="mr-3 h-4 w-4 text-[#39b54a]" />
+                    <strong>Show:</strong>&nbsp;Além do Registro
+                  </p>
+                </div>
+              </div>
+
+              <div className="rounded-lg border-l-4 border-green-500 bg-green-50 p-4">
+                <p className="text-center font-bold text-green-700">
+                  🎉 <strong>PRÉ-VENDA DIA 06/10 ÀS 12H!</strong>
+                  <br />
+                  Garanta seu ingresso antes de todo mundo
+                </p>
               </div>
             </div>
           </div>
-        </section>
+        </div>
 
-        <section className="border-t border-event-line bg-event-surface py-16 text-center md:py-20">
-          <div className="mx-auto max-w-2xl px-5">
-            <p className="mb-3 text-sm font-bold uppercase text-event-lime">Luan Santana · Foz do Iguaçu</p>
-            <h2 className="mb-5 text-3xl font-black uppercase md:text-5xl">Nos vemos no Estádio do ABC</h2>
-            <p className="mb-8 text-event-muted">Acompanhe a pré-venda de 06/10 às 12h pelo grupo VIP.</p>
-            <VipButton>Entrar no grupo VIP agora</VipButton>
-          </div>
-        </section>
+        {/* CTA FINAL */}
+        <div id="cta" className="mb-8 scroll-mt-24 rounded-lg bg-white p-8 text-center shadow-lg">
+          <h2 className="mb-4 text-2xl font-bold text-gray-800">
+            NÃO DEIXE PARA A ÚLTIMA HORA!
+          </h2>
+          <p className="mb-6 text-lg text-gray-600">
+            A <strong className="text-[#39b54a]">PRÉ-VENDA</strong> é por tempo limitado.
+            <br />
+            Entre no <strong>Grupo VIP</strong> para acompanhar a pré-venda!
+          </p>
+          <VipButton>ENTRAR NO GRUPO VIP AGORA</VipButton>
+          <p className="mt-4 text-sm text-gray-500">
+            ⏰ Pré-venda em 06/10 às 12h
+          </p>
+        </div>
       </main>
 
-      <footer className="border-t border-event-line py-10 text-sm text-event-muted">
-        <div className="mx-auto flex max-w-6xl flex-col justify-between gap-6 px-5 md:flex-row">
-          <div><p className="font-bold text-event-light">Guichê Web</p><p className="mt-2">Guichê Web Comercialização de Ingressos Ltda<br />CNPJ: 18.797.249/0001-35</p></div>
-          <div className="flex flex-wrap items-center gap-5">
-            <a href="https://guicheweb.octadesk.com/kb" className="hover:text-event-light">Dúvidas Frequentes</a>
-            <a href="https://guicheweb.notion.site/Termos-Pol-ticas-b5713f88c432496a8cb3683da9be7dfd" className="hover:text-event-light">Termos e Políticas</a>
-            <a href="https://www.facebook.com/GuicheWeb/" aria-label="Facebook" className="hover:text-event-light"><Facebook className="size-5" /></a>
-            <a href="https://instagr.am/guicheweb" aria-label="Instagram" className="hover:text-event-light"><Instagram className="size-5" /></a>
-            <a href="https://www.youtube.com/channel/UC9-7SFPICgrmnZRXhmpFVug" aria-label="YouTube" className="hover:text-event-light"><Youtube className="size-5" /></a>
-            <a href="https://twitter.com/guicheweb" aria-label="Twitter" className="hover:text-event-light"><Twitter className="size-5" /></a>
+      {/* FOOTER */}
+      <footer className="bg-black py-12 text-white">
+        <div className="container mx-auto max-w-6xl px-4">
+          <div className="grid gap-8 md:grid-cols-4">
+            <div className="md:col-span-2">
+              <img
+                src="https://s3.guicheweb.com.br/nova_marca/logogw.png"
+                alt="Guichê Web"
+                className="mb-4 h-10"
+              />
+              <p className="text-gray-400">
+                Guichê Web Comercialização de Ingressos Ltda
+                <br />
+                CNPJ: 18.797.249/0001-35
+              </p>
+            </div>
+
+            <div>
+              <h4 className="mb-4 font-bold">LINKS ÚTEIS</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>
+                  <a href="https://guicheweb.octadesk.com/kb" className="transition hover:text-white">
+                    Dúvidas Frequentes
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://guicheweb.notion.site/Termos-Pol-ticas-b5713f88c432496a8cb3683da9be7dfd"
+                    className="transition hover:text-white"
+                  >
+                    Termos e Políticas
+                  </a>
+                </li>
+                <li>
+                  <a href="https://abrape.com.br/" className="transition hover:text-white">
+                    ABRAPE
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="mb-4 font-bold">REDES SOCIAIS</h4>
+              <div className="flex space-x-4 text-gray-400">
+                <a href="https://www.facebook.com/GuicheWeb/" aria-label="Facebook" className="transition hover:text-white">
+                  <Facebook className="h-5 w-5" />
+                </a>
+                <a href="https://instagr.am/guicheweb" aria-label="Instagram" className="transition hover:text-white">
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://www.youtube.com/channel/UC9-7SFPICgrmnZRXhmpFVug"
+                  aria-label="YouTube"
+                  className="transition hover:text-white"
+                >
+                  <Youtube className="h-5 w-5" />
+                </a>
+                <a href="https://twitter.com/guicheweb" aria-label="Twitter" className="transition hover:text-white">
+                  <Twitter className="h-5 w-5" />
+                </a>
+                <a href="https://wa.me/5548999511111" aria-label="WhatsApp" className="transition hover:text-white">
+                  <MessageCircle className="h-5 w-5" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 border-t border-gray-800 pt-8 text-center text-gray-400">
+            <p>&copy; 2024 Guichê Web. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>

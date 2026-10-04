@@ -1,6 +1,4 @@
-- [ ] Trocar capa e card pela arte do show Luan Santana.
-- [ ] Atualizar textos, local e data do evento sem inventar detalhes não informados.
-- [ ] Programar contagem regressiva e avisos para 06/10/2026 às 12h de Brasília.
-- [ ] Conferir a página no computador e no celular.
-
-- [ ] Restaurar o design original sem alterar a nova arte e os dados do evento.
+- [x] Restaurar o design anterior da página.
+- [x] Trocar capa, banner e card pela arte de Luan Santana.
+- [x] Atualizar informações do evento e pré-venda para 06/10 às 12h.
+- [ ] Conferir aparência e funcionamento no computador e no celular.
