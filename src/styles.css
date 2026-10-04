@@ -142,3 +142,22 @@
     color: var(--color-foreground);
   }
 }
+
+/* Concert campaign surfaces shared across the page. */
+@theme inline {
+  --color-event-ink: var(--event-ink);
+  --color-event-surface: var(--event-surface);
+  --color-event-light: var(--event-light);
+  --color-event-muted: var(--event-muted);
+  --color-event-line: var(--event-line);
+  --color-event-lime: var(--event-lime);
+}
+
+:root, .dark {
+  --event-ink: oklch(0.13 0.01 260);
+  --event-surface: oklch(0.19 0.012 260);
+  --event-light: oklch(0.98 0 0);
+  --event-muted: oklch(0.76 0.012 260);
+  --event-line: oklch(0.38 0.01 260);
+  --event-lime: oklch(0.82 0.19 140);
+}
