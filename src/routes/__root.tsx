@@ -34,7 +34,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -77,24 +77,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Pré-Venda - Henrique & Juliano em Foz do Iguaçu/PR | Acesso Antecipado" },
-      {
-        name: "description",
-        content:
-          "Pré-venda exclusiva - Henrique & Juliano em Foz do Iguaçu/PR, dia 24 de Outubro de 2026 no Estádio do ABC. Garanta seu ingresso!",
-      },
-      {
-        property: "og:title",
-        content: "Pré-Venda - Henrique & Juliano em Foz do Iguaçu/PR | Acesso Antecipado",
-      },
-      {
-        property: "og:description",
-        content:
-          "Pré-venda exclusiva - Henrique & Juliano em Foz do Iguaçu/PR, dia 24 de Outubro de 2026 no Estádio do ABC. Garanta seu ingresso!",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-
     ],
     links: [
       {

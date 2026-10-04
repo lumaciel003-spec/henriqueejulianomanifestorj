@@ -13,16 +13,16 @@ import {
   Twitter,
   MessageCircle,
 } from "lucide-react";
-import capaAsset from "@/assets/matheus-kauan-cuiaba.jpg.asset.json";
+import capaAsset from "@/assets/luan-santana-foz.png.asset.json";
 const CAPA_EVENTO = capaAsset.url;
 
 const TITLE =
-  "Pré-Venda - Matheus & Kauan em Cuiabá/MT | Acesso Antecipado";
+  "Pré-Venda - Luan Santana em Foz do Iguaçu/PR | Além do Registro";
 const DESCRIPTION =
-  "Pré-venda exclusiva - Matheus & Kauan em Cuiabá/MT, dia 24 de Outubro de 2026 no Allure Music Hall. Garanta seu ingresso!";
+  "Pré-venda do show Luan Santana — Além do Registro, dia 12 de dezembro de 2026 no Estádio do ABC, em Foz do Iguaçu/PR. A pré-venda começa em 06/10 às 12h.";
 
 const WHATSAPP_GROUP = "https://chat.whatsapp.com/EaJ5XHfEp2YKj4ty6TBDoy?mode=hqrc";
-const TARGET_DATE = new Date("2026-09-22T13:00:00Z"); // 10h BRT
+const TARGET_DATE = new Date("2026-10-06T15:00:00Z"); // 12h BRT
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -123,19 +123,19 @@ function CountdownBox({ value, label }: { value: string; label: string }) {
 const BENEFITS = [
   {
     title: "🎯 ACESSO ANTECIPADO",
-    text: "Compre seus ingressos antes da venda geral, garantindo os melhores lugares",
+    text: "Acompanhe as informações sobre o início da pré-venda",
   },
   {
-    title: "💰 PREÇO DE PRÉ-VENDA",
-    text: "Valores exclusivos da pré-venda, mais baixos que a venda geral",
+    title: "📅 DATA DA PRÉ-VENDA",
+    text: "A pré-venda começa em 06 de outubro às 12h (horário de Brasília)",
   },
   {
     title: "🔔 NOTIFICAÇÃO IMEDIATA",
-    text: "Seja avisado na hora que os ingressos forem liberados",
+    text: "Acompanhe pelo grupo as novidades do show",
   },
   {
     title: "🎁 BÔNUS EXCLUSIVOS",
-    text: "Os 15 primeiros a garantir o ingresso ganharão uma foto com o Matheus & Kauan no camarim e um copo oficial do evento autografado pelos artistas.",
+    text: "Os 15 primeiros a garantir o ingresso ganharão uma foto com Luan Santana no camarim e um copo oficial do evento autografado pelo artista.",
   },
 ];
 
@@ -215,7 +215,7 @@ function Index() {
       <section id="top" className="relative mt-20">
         <img
           src={CAPA_EVENTO}
-          alt="Matheus & Kauan - Cuiabá/MT"
+          alt="Luan Santana — Além do Registro em Foz do Iguaçu/PR"
           className="block w-full bg-[#e8e8e8] object-contain"
         />
         <div className="absolute bottom-[-1px] left-0 w-full rotate-180 overflow-hidden leading-[0]">
@@ -239,13 +239,13 @@ function Index() {
           <div className="mb-4 inline-block rounded-[20px] bg-[#e74c3c] px-4 py-2 text-sm font-bold text-white">
             {c.expired
               ? "🔥 PRÉ-VENDA ABERTA! 🔥"
-              : "🔥 PRÉ-VENDA EXCLUSIVA DIA 22/09 ÀS 10H! 🔥"}
+              : "🔥 PRÉ-VENDA EXCLUSIVA DIA 06/10 ÀS 12H! 🔥"}
           </div>
 
           <h1 className="mb-4 text-3xl font-bold text-gray-800 md:text-4xl">
             GARANTA SEU INGRESSO NA <span className="text-[#39b54a]">PRÉ-VENDA</span>
             <br />
-            MATHEUS &amp; KAUAN - CUIABÁ/MT
+            LUAN SANTANA - FOZ DO IGUAÇU/PR
           </h1>
 
           <p className="mb-6 text-lg text-gray-600">
@@ -292,7 +292,7 @@ function Index() {
             <div className="text-center">
               <img
                 src={CAPA_EVENTO}
-                alt="Matheus & Kauan - Cuiabá/MT"
+                alt="Luan Santana — Além do Registro em Foz do Iguaçu/PR"
                 className="mx-auto w-full max-w-sm rounded-lg shadow-md"
               />
             </div>
@@ -300,32 +300,32 @@ function Index() {
             <div className="space-y-4">
               <div className="rounded-lg bg-gray-50 p-4">
                 <h3 className="mb-3 text-xl font-bold text-[#39b54a]">
-                  🎙 Matheus &amp; Kauan em Cuiabá
+                  🎙 Luan Santana — Além do Registro
                 </h3>
 
                 <div className="space-y-2 text-gray-700">
                   <p className="flex items-center">
                     <Calendar className="mr-3 h-4 w-4 text-[#39b54a]" />
-                    <strong>Data:</strong>&nbsp;24 de Outubro de 2026 (Sábado)
+                    <strong>Data:</strong>&nbsp;12 de Dezembro de 2026 (Sábado)
                   </p>
                   <p className="flex items-center">
                     <MapPin className="mr-3 h-4 w-4 shrink-0 text-[#39b54a]" />
-                    <strong>Local:</strong>&nbsp;Allure Music Hall - Cuiabá/MT
+                    <strong>Local:</strong>&nbsp;Estádio do ABC - Foz do Iguaçu/PR
                   </p>
                   <p className="flex items-center">
                     <Clock className="mr-3 h-4 w-4 text-[#39b54a]" />
-                    <strong>Horário:</strong>&nbsp;A partir das 20:00
+                    <strong>Pré-venda:</strong>&nbsp;06/10 às 12h (horário de Brasília)
                   </p>
                   <p className="flex items-center">
                     <Star className="mr-3 h-4 w-4 text-[#39b54a]" />
-                    <strong>Classificação:</strong>&nbsp;Livre
+                    <strong>Show:</strong>&nbsp;Além do Registro
                   </p>
                 </div>
               </div>
 
               <div className="rounded-lg border-l-4 border-green-500 bg-green-50 p-4">
                 <p className="text-center font-bold text-green-700">
-                  🎉 <strong>PRÉ-VENDA DIA 22/09 ÀS 10H!</strong>
+                  🎉 <strong>PRÉ-VENDA DIA 06/10 ÀS 12H!</strong>
                   <br />
                   Garanta seu ingresso antes de todo mundo
                 </p>
@@ -342,11 +342,11 @@ function Index() {
           <p className="mb-6 text-lg text-gray-600">
             A <strong className="text-[#39b54a]">PRÉ-VENDA</strong> é por tempo limitado.
             <br />
-            Entre no <strong>Grupo VIP</strong> e garanta seu ingresso com preço exclusivo!
+            Entre no <strong>Grupo VIP</strong> para acompanhar a pré-venda!
           </p>
           <VipButton>ENTRAR NO GRUPO VIP AGORA</VipButton>
           <p className="mt-4 text-sm text-gray-500">
-            ⏰ Vagas limitadas no grupo - Garanta sua vaga!
+            ⏰ Pré-venda em 06/10 às 12h
           </p>
         </div>
       </main>
