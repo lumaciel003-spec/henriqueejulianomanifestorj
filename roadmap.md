@@ -2,3 +2,5 @@
 - [x] Trocar capa, banner e card pela arte de Luan Santana.
 - [x] Atualizar informações do evento e pré-venda para 06/10 às 12h.
 - [ ] Conferir aparência e funcionamento no computador e no celular.
+
+- [ ] Manter o bônus dos 15 primeiros no card, adaptado para Luan Santana.
