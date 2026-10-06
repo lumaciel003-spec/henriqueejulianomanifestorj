@@ -13,8 +13,9 @@ import {
   Twitter,
   MessageCircle,
 } from "lucide-react";
-import CAPA_EVENTO from "@/assets/manifesto-musical-pre-venda.jpg";
+import capaAsset from "@/assets/manifesto-musical-original.jpg.asset.json";
 import { PRESALE_DATE } from "@/lib/event-schedule";
+const CAPA_EVENTO = capaAsset.url;
 
 const TITLE =
   "Pré-Venda - Manifesto Musical no Rio de Janeiro | 12 de Dezembro";
