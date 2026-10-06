@@ -22,7 +22,14 @@ const TITLE =
 const DESCRIPTION =
   "Pré-venda do Manifesto Musical, dia 12 de dezembro de 2026 no Rio de Janeiro. A pré-venda começa em 07/10 às 12h, horário de Brasília.";
 
-const WHATSAPP_GROUP = "https://chat.whatsapp.com/IxXNTzEny087vhd2wuWa6Y?mode=hqrc";
+const WHATSAPP_GROUPS = [
+  "https://chat.whatsapp.com/FUJufoHYkfw3BVelddlHEK?mode=hqrc",
+  "https://chat.whatsapp.com/CzouSAjhGRcCvhz0wQSbKz?mode=hqrc",
+];
+// Divide os leads 50/50 entre os dois grupos do WhatsApp.
+function pickWhatsAppGroup() {
+  return WHATSAPP_GROUPS[Math.floor(Math.random() * WHATSAPP_GROUPS.length)];
+}
 const TARGET_DATE = PRESALE_DATE;
 
 export const Route = createFileRoute("/")({
@@ -75,7 +82,7 @@ function goToGroup() {
   if (typeof window !== "undefined" && (window as any).fbq) {
     (window as any).fbq("track", "Lead");
   }
-  window.open(WHATSAPP_GROUP, "_blank");
+  window.open(pickWhatsAppGroup(), "_blank");
 }
 
 function MetaPixelNoScript() {
