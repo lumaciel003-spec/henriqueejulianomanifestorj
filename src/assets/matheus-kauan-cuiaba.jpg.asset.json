@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "8eaf8bb1-6145-4804-bacf-b77a1549d857",
-  "project_id": "c5d685f5-4f28-4657-b0d4-bc864aa0a7d9",
-  "url": "/__l5e/assets-v1/8eaf8bb1-6145-4804-bacf-b77a1549d857/matheus-kauan-cuiaba.jpg",
-  "r2_key": "a/v1/c5d685f5-4f28-4657-b0d4-bc864aa0a7d9/8eaf8bb1-6145-4804-bacf-b77a1549d857/matheus-kauan-cuiaba.jpg",
-  "original_filename": "matheus-kauan-cuiaba.jpg",
-  "size": 210753,
   "content_type": "image/jpeg",
-  "created_at": "2026-09-21T04:06:44Z"
+  "created_at": "2026-09-21T04:06:44Z",
+  "original_filename": "matheus-kauan-cuiaba.jpg",
+  "project_id": "879ea318-875a-4f1d-9f96-3549d1b8c60e",
+  "r2_key": "a/v1/879ea318-875a-4f1d-9f96-3549d1b8c60e/8eaf8bb1-6145-4804-bacf-b77a1549d857/matheus-kauan-cuiaba.jpg",
+  "size": 210753,
+  "url": "/__l5e/assets-v1/8eaf8bb1-6145-4804-bacf-b77a1549d857/matheus-kauan-cuiaba.jpg",
+  "version": 1
 }

@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "07a4c848-fd30-4cde-8ffd-52058fa45741",
-  "project_id": "c5d685f5-4f28-4657-b0d4-bc864aa0a7d9",
-  "url": "/__l5e/assets-v1/07a4c848-fd30-4cde-8ffd-52058fa45741/luan-santana-foz.png",
-  "r2_key": "a/v1/c5d685f5-4f28-4657-b0d4-bc864aa0a7d9/07a4c848-fd30-4cde-8ffd-52058fa45741/luan-santana-foz.png",
-  "original_filename": "luan-santana-foz.png",
-  "size": 2597708,
   "content_type": "image/png",
-  "created_at": "2026-10-04T01:16:55Z"
+  "created_at": "2026-10-04T01:16:55Z",
+  "original_filename": "luan-santana-foz.png",
+  "project_id": "879ea318-875a-4f1d-9f96-3549d1b8c60e",
+  "r2_key": "a/v1/879ea318-875a-4f1d-9f96-3549d1b8c60e/07a4c848-fd30-4cde-8ffd-52058fa45741/luan-santana-foz.png",
+  "size": 2597708,
+  "url": "/__l5e/assets-v1/07a4c848-fd30-4cde-8ffd-52058fa45741/luan-santana-foz.png",
+  "version": 1
 }
