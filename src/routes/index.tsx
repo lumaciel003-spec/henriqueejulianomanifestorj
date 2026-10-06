@@ -151,7 +151,7 @@ const BENEFITS = [
   },
   {
     title: "🎁 BÔNUS EXCLUSIVOS",
-    text: "Os 15 primeiros a garantir o ingresso ganharão uma foto com os artistas no camarim e um copo oficial do evento autografado pelos artistas.",
+    text: "Os 15 primeiros a garantir o ingresso ganharão uma foto com Henrique & Juliano no camarim e um copo oficial do evento autografado pelos artistas.",
   },
 ];
 
