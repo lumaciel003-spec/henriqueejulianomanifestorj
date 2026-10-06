@@ -13,16 +13,16 @@ import {
   Twitter,
   MessageCircle,
 } from "lucide-react";
-import capaAsset from "@/assets/luan-santana-foz.png.asset.json";
-const CAPA_EVENTO = capaAsset.url;
+import CAPA_EVENTO from "@/assets/manifesto-musical-pre-venda.jpg";
+import { PRESALE_DATE } from "@/lib/event-schedule";
 
 const TITLE =
-  "Pré-Venda - Luan Santana em Foz do Iguaçu/PR | Além do Registro";
+  "Pré-Venda - Manifesto Musical no Rio de Janeiro | 12 de Dezembro";
 const DESCRIPTION =
-  "Pré-venda do show Luan Santana — Além do Registro, dia 12 de dezembro de 2026 no Estádio do ABC, em Foz do Iguaçu/PR. A pré-venda começa em 06/10 às 12h.";
+  "Pré-venda do Manifesto Musical, dia 12 de dezembro de 2026 no Rio de Janeiro. A pré-venda começa em 07/10 às 12h, horário de Brasília.";
 
 const WHATSAPP_GROUP = "https://chat.whatsapp.com/IxXNTzEny087vhd2wuWa6Y?mode=hqrc";
-const TARGET_DATE = new Date("2026-10-06T15:00:00Z"); // 12h BRT
+const TARGET_DATE = PRESALE_DATE;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -142,7 +142,7 @@ const BENEFITS = [
   },
   {
     title: "📅 DATA DA PRÉ-VENDA",
-    text: "A pré-venda começa em 06 de outubro às 12h (horário de Brasília)",
+    text: "A pré-venda começa em 07 de outubro às 12h (horário de Brasília)",
   },
   {
     title: "🔔 NOTIFICAÇÃO IMEDIATA",
@@ -150,7 +150,7 @@ const BENEFITS = [
   },
   {
     title: "🎁 BÔNUS EXCLUSIVOS",
-    text: "Os 15 primeiros a garantir o ingresso ganharão uma foto com Luan Santana no camarim e um copo oficial do evento autografado pelo artista.",
+    text: "Os 15 primeiros a garantir o ingresso ganharão uma foto com os artistas no camarim e um copo oficial do evento autografado pelos artistas.",
   },
 ];
 
@@ -230,7 +230,7 @@ function Index() {
       <section id="top" className="relative mt-20">
         <img
           src={CAPA_EVENTO}
-          alt="Luan Santana — Além do Registro em Foz do Iguaçu/PR"
+          alt="Manifesto Musical no Rio de Janeiro — pré-venda dia 07 de outubro às 12h"
           className="block w-full bg-[#e8e8e8] object-contain"
         />
         <div className="absolute bottom-[-1px] left-0 w-full rotate-180 overflow-hidden leading-[0]">
@@ -254,13 +254,13 @@ function Index() {
           <div className="mb-4 inline-block rounded-[20px] bg-[#e74c3c] px-4 py-2 text-sm font-bold text-white">
             {c.expired
               ? "🔥 PRÉ-VENDA ABERTA! 🔥"
-              : "🔥 PRÉ-VENDA EXCLUSIVA DIA 06/10 ÀS 12H! 🔥"}
+              : "🔥 PRÉ-VENDA EXCLUSIVA DIA 07/10 ÀS 12H! 🔥"}
           </div>
 
           <h1 className="mb-4 text-3xl font-bold text-gray-800 md:text-4xl">
             GARANTA SEU INGRESSO NA <span className="text-[#39b54a]">PRÉ-VENDA</span>
             <br />
-            LUAN SANTANA - FOZ DO IGUAÇU/PR
+            MANIFESTO MUSICAL - RIO DE JANEIRO/RJ
           </h1>
 
           <p className="mb-6 text-lg text-gray-600">
@@ -307,7 +307,7 @@ function Index() {
             <div className="text-center">
               <img
                 src={CAPA_EVENTO}
-                alt="Luan Santana — Além do Registro em Foz do Iguaçu/PR"
+                alt="Manifesto Musical no Rio de Janeiro — pré-venda dia 07 de outubro às 12h"
                 className="mx-auto w-full max-w-sm rounded-lg shadow-md"
               />
             </div>
@@ -315,7 +315,7 @@ function Index() {
             <div className="space-y-4">
               <div className="rounded-lg bg-gray-50 p-4">
                 <h3 className="mb-3 text-xl font-bold text-[#39b54a]">
-                  🎙 Luan Santana — Além do Registro
+                  🎙 Manifesto Musical
                 </h3>
 
                 <div className="space-y-2 text-gray-700">
@@ -325,22 +325,22 @@ function Index() {
                   </p>
                   <p className="flex items-center">
                     <MapPin className="mr-3 h-4 w-4 shrink-0 text-[#39b54a]" />
-                    <strong>Local:</strong>&nbsp;Estádio do ABC - Foz do Iguaçu/PR
+                    <strong>Local:</strong>&nbsp;Rio de Janeiro/RJ
                   </p>
                   <p className="flex items-center">
                     <Clock className="mr-3 h-4 w-4 text-[#39b54a]" />
-                    <strong>Pré-venda:</strong>&nbsp;06/10 às 12h (horário de Brasília)
+                    <strong>Pré-venda:</strong>&nbsp;07/10 às 12h (horário de Brasília)
                   </p>
                   <p className="flex items-center">
                     <Star className="mr-3 h-4 w-4 text-[#39b54a]" />
-                    <strong>Show:</strong>&nbsp;Além do Registro
+                    <strong>Show:</strong>&nbsp;Manifesto Musical
                   </p>
                 </div>
               </div>
 
               <div className="rounded-lg border-l-4 border-green-500 bg-green-50 p-4">
                 <p className="text-center font-bold text-green-700">
-                  🎉 <strong>PRÉ-VENDA DIA 06/10 ÀS 12H!</strong>
+                  🎉 <strong>PRÉ-VENDA DIA 07/10 ÀS 12H!</strong>
                   <br />
                   Garanta seu ingresso antes de todo mundo
                 </p>
@@ -361,7 +361,7 @@ function Index() {
           </p>
           <VipButton>ENTRAR NO GRUPO VIP AGORA</VipButton>
           <p className="mt-4 text-sm text-gray-500">
-            ⏰ Pré-venda em 06/10 às 12h
+            ⏰ Pré-venda em 07/10 às 12h
           </p>
         </div>
       </main>

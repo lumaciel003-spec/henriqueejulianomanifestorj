@@ -1,0 +1,1 @@
+export const PRESALE_DATE = new Date("2026-10-07T15:00:00Z"); // 12h Brasília
