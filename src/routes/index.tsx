@@ -82,7 +82,7 @@ function goToGroup() {
   if (typeof window !== "undefined" && (window as any).fbq) {
     (window as any).fbq("track", "Lead");
   }
-  window.open(WHATSAPP_GROUP, "_blank");
+  window.open(pickWhatsAppGroup(), "_blank");
 }
 
 function MetaPixelNoScript() {
