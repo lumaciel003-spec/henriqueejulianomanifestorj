@@ -7,3 +7,4 @@
 - [x] Atualizar arte e informações para Manifesto Musical no Rio de Janeiro, mantendo o design e o bônus.
 - [x] Usar PRÉ-VENDA na arte e na página, com cronômetro para 07/10 às 12h de Brasília.
 - [x] Verificar a imagem, as informações e o cronômetro.
+- [x] Deixar todos os botões de grupo VIP apontando para um único link do WhatsApp.
