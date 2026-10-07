@@ -22,7 +22,7 @@ const TITLE =
 const DESCRIPTION =
   "Pré-venda do Manifesto Musical, dia 12 de dezembro de 2026 no Rio de Janeiro. A pré-venda começa em 07/10 às 12h, horário de Brasília.";
 
-const WHATSAPP_GROUP = "https://chat.whatsapp.com/HGTwHZi9TqP1XsNIKedQRM?mode=hqrc";
+const WHATSAPP_GROUP = "https://chat.whatsapp.com/EfzxUx5nOZxCTqIIYM8Qtv?mode=hqrc";
 const TARGET_DATE = PRESALE_DATE;
 
 export const Route = createFileRoute("/")({
