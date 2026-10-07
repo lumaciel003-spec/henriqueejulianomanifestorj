@@ -8,3 +8,4 @@
 - [x] Usar PRÉ-VENDA na arte e na página, com cronômetro para 07/10 às 12h de Brasília.
 - [x] Verificar a imagem, as informações e o cronômetro.
 - [x] Deixar todos os botões de grupo VIP apontando para um único link do WhatsApp.
+- [x] Trocar o link do grupo VIP para https://chat.whatsapp.com/EfzxUx5nOZxCTqIIYM8Qtv?mode=hqrc.
